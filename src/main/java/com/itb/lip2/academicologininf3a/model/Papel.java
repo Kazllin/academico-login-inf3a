@@ -17,6 +17,7 @@ public class Papel {
 	private String NomePapel;
 	private String DescricaoPapel;
 	private boolean codStatusPapel;
+	
 	public Long getId() {
 		return id;
 	}
