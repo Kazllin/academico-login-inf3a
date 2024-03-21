@@ -1,5 +1,6 @@
 package com.itb.lip2.academicologininf3a.controller;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.itb.lip2.academicologininf3a.model.Usuario;
 import com.itb.lip2.academicologininf3a.repository.UsuarioRepository;
@@ -22,33 +24,18 @@ import com.itb.lip2.academicologininf3a.service.UsuarioService;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
 	private UsuarioService usuarioService;
-
+		
 	@GetMapping("/User")
-	public List<Usuario> getUsers() {
+	public ResponseEntity<List<Usuario>> getUsers() {
 		
-		List<Usuario> usuarios =  new ArrayList<Usuario>();
-	
-		Usuario us1 = new Usuario();
-		us1.setId(1l);
-		us1.setNome("Marcos");
-		us1.setEmail("Marcos@gmail.com");
-		
-		Usuario us2 = new Usuario();
-		us2.setId(2l);
-		us2.setNome("Marcos");
-		us2.setEmail("Marcos@gmail.com");
-		
-		usuarios.add(us1);
-		usuarios.add(us2);
-		return usuarios;
-		
+		return ResponseEntity.ok().body(usuarioService.findAll()) ;
 	}
 	
 	@PostMapping("/User")
 	public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario){
 		
+		URI uri = URI.create(ServletUriComponentsBuilder .fromCurrentContextPath().path("/api/v1/User").toUriString());
 		
 		return ResponseEntity.ok().body(usuarioService.save(usuario));
 		
