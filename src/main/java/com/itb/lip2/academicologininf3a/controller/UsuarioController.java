@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.itb.lip2.academicologininf3a.model.Usuario;
-import com.itb.lip2.academicologininf3a.repository.UsuarioRepository;
 import com.itb.lip2.academicologininf3a.service.UsuarioService;
 
 
@@ -26,13 +25,13 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 		
-	@GetMapping("/User")
+	@GetMapping("/user")
 	public ResponseEntity<List<Usuario>> getUsers() {
 		
 		return ResponseEntity.ok().body(usuarioService.findAll()) ;
 	}
 	
-	@PostMapping("/User")
+	@PostMapping("/user")
 	public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario){
 		
 		URI uri = URI.create(ServletUriComponentsBuilder .fromCurrentContextPath().path("/api/v1/User").toUriString());

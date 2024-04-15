@@ -8,7 +8,7 @@ import com.itb.lip2.academicologininf3a.model.Papel;
 @Repository
 public interface PapelRepository extends JpaRepository<Papel, Long> {
 	
-	
+	Papel getPapelById(Long id);
 
 }
 

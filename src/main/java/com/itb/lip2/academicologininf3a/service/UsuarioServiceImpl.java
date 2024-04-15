@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itb.lip2.academicologininf3a.model.Papel;
 import com.itb.lip2.academicologininf3a.model.Usuario;
 import com.itb.lip2.academicologininf3a.repository.UsuarioRepository;
 
@@ -27,5 +28,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 		return usuarioRepository.findAll();
 	}
+
 
 }
