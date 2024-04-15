@@ -40,6 +40,9 @@ public class UsuarioController {
 		
 		
 	}
-	
-	
+
+	public ResponseEntity<Usuario> findUserById(Long id){
+
+		return null;
+	}
 }
