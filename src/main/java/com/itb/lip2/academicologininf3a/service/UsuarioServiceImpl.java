@@ -31,7 +31,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario findUserById(Long id) {
-		return usuarioRepository.findById(id).get();
+
+		return usuarioRepository.getById(id);
 	}
 
 

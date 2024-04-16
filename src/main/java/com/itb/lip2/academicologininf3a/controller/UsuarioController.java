@@ -7,11 +7,8 @@ import java.util.List;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.itb.lip2.academicologininf3a.model.Usuario;
@@ -34,15 +31,15 @@ public class UsuarioController {
 	@PostMapping("/user")
 	public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario){
 		
-		URI uri = URI.create(ServletUriComponentsBuilder .fromCurrentContextPath().path("/api/v1/User").toUriString());
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/User").toUriString());
 		
 		return ResponseEntity.ok().body(usuarioService.save(usuario));
 		
 		
 	}
+@GetMapping("/user/{id}")
+	public ResponseEntity<Usuario> findUserById(@PathVariable(value = "id") Long id, ModelMap model, Usuario usuario){
 
-	public ResponseEntity<Usuario> findUserById(Long id){
-
-		return null;
+		return ResponseEntity.ok().body(usuarioService.findUserById(id));
 	}
 }
