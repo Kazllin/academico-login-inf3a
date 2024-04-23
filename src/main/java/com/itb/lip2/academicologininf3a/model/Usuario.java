@@ -1,23 +1,19 @@
 package com.itb.lip2.academicologininf3a.model;
 
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 import java.time.LocalDate;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+@Inheritance(strategy =  InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn ( name = "tipoUsuario", discriminatorType = DiscriminatorType.STRING)
+@EnableJpaAuditing
+public abstract class Usuario {
   
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +22,21 @@ public class Usuario {
 	private String nome;
 	private String sobrenome;
 	private String email;
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 	private String senha;
 	private boolean  codStatusUsuario;
 	private LocalDate dataNascimento;
-	
+
+	@Column(insertable = false, updatable = false)
+	private String tipoUsuario;
 	// FetchType.EAGER -> tRAZ TODOS OS REGISTROS RELACIONADOS
 	// FetchType.LAZY -> NAO TRAZ TODOS OS REGISTROS RELACIONADOS
 	
@@ -42,7 +49,19 @@ public class Usuario {
 			)
 	
 	private Collection<Papel> papeis;
-	
+
+
+	public Usuario(){
+
+	}
+	public Usuario(Long id, String nome, String email, String senha, Collection<Papel> papeis) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.papeis = papeis;
+	}
+
 	public Collection<Papel> getPapeis() {
 		return papeis;
 	}
