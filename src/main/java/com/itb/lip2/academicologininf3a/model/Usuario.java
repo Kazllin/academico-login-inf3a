@@ -22,15 +22,6 @@ public abstract class Usuario {
 	private String nome;
 	private String sobrenome;
 	private String email;
-
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
 	private String senha;
 	private boolean  codStatusUsuario;
 	private LocalDate dataNascimento;
@@ -60,6 +51,14 @@ public abstract class Usuario {
 		this.email = email;
 		this.senha = senha;
 		this.papeis = papeis;
+	}
+	
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public Collection<Papel> getPapeis() {

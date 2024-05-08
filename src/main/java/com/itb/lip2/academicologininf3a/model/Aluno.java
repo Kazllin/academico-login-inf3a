@@ -1,6 +1,6 @@
 package com.itb.lip2.academicologininf3a.model;
 
-import javax.persistence.DiscriminatorColumn;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Collection;
