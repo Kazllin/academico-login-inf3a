@@ -1,5 +1,7 @@
 package com.itb.lip2.academicologininf3a.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDate;
@@ -13,6 +15,11 @@ import javax.persistence.*;
 @Inheritance(strategy =  InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn ( name = "tipoUsuario", discriminatorType = DiscriminatorType.STRING)
 @EnableJpaAuditing
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipoUsuario" )
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Aluno.class, name = "Aluno"),
+		@JsonSubTypes.Type(value = Professor.class, name = "Professor")
+})
 public abstract class Usuario {
   
 	@Id
