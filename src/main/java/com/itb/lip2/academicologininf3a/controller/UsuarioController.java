@@ -31,7 +31,7 @@ public class UsuarioController {
 	@PostMapping("/user")
 	public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario){
 		
-		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/User").toUriString());
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/user").toUriString());
 		
 		return ResponseEntity.ok().body(usuarioService.save(usuario));
 		
