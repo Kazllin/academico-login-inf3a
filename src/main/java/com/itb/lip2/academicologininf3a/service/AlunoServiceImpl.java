@@ -1,31 +1,34 @@
 package com.itb.lip2.academicologininf3a.service;
 
-import java.util.List;
 
+import com.itb.lip2.academicologininf3a.model.Aluno;
+import com.itb.lip2.academicologininf3a.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itb.lip2.academicologininf3a.model.Papel;
-import com.itb.lip2.academicologininf3a.repository.PapelRepository;
-import com.itb.lip2.academicologininf3a.repository.UsuarioRepository;
+import javax.transaction.Transactional;
 
 @Service
-public class PapelServiceImpl implements PapelService {
-	
-	@Autowired
-	private PapelRepository papelRepository;
+public class AlunoServiceImpl implements AlunoService {
 
-	@Override
-	public Papel save(Papel papel) {
-		// TODO Auto-generated method stub
-		return papelRepository.save(papel);
-	}
+    // @Autowired
+   // private  AlunoRepository alunoRepository;
+    private final AlunoRepository alunoRepository;
 
-	@Override
-	public List<Papel> findAll() {
-		// TODO Auto-generated method stub
-		return papelRepository.findAll();
-	}
-	
-	
+    public AlunoServiceImpl(AlunoRepository alunoRepository) {
+        this.alunoRepository = alunoRepository;
+
+    }
+    @Override
+    @Transactional
+    public Aluno update(Long id, Aluno aluno) throws Exception {
+        return alunoRepository.findById(id).map(al ->{
+            al.setNome(aluno.getNome());
+            al.setEmail(aluno.getEmail());
+            al.setDataNascimento(aluno.getDataNascimento());
+            al.setRm(aluno.getRm());
+            al.setCodStatusUsuario(aluno.isCodStatusUsuario());
+            return alunoRepository.save(al);
+        }).orElseThrow(()->new Exception("Aluno não encontrado!"));
+    }
 }
