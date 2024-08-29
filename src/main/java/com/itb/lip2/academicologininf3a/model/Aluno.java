@@ -18,9 +18,9 @@ public class Aluno extends Usuario {
 
     }
 
-    public Aluno(Long id, String nome, String email, String senha, Collection<Papel> papeis) {
+    public Aluno(Long id, String nome, String email, String senha, String tipoUsuario, Collection<Papel> papeis) {
 
-        super(id, nome,email, senha, papeis);  // Acesso ao construtor da class pai
+        super(id, nome,email, senha,tipoUsuario, papeis);  // Acesso ao construtor da class pai
 
     }
 

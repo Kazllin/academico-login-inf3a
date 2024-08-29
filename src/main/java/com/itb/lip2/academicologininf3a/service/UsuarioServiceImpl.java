@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.itb.lip2.academicologininf3a.model.Papel;
+import com.itb.lip2.academicologininf3a.model.Professor;
 import com.itb.lip2.academicologininf3a.repository.PapelRepository;
+import com.itb.lip2.academicologininf3a.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,16 +25,19 @@ import javax.transaction.Transactional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private ProfessorRepository professorRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private PapelRepository papelRepository;
-	
+
 
 	@Override
 	public Usuario save(Usuario usuario) {
@@ -41,16 +46,26 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		return usuarioRepository.save(usuario);
 	}
 
+	@Override
+	public Usuario saveProfessor(Professor professor) {
+		professor.setCodStatusUsuario(true);
+		professor.setSenha(passwordEncoder.encode(professor.getSenha()));
+		professor.setPapeis(new ArrayList<>());
+		addPapelToUsuario(professor, "ROLE_PROFESSOR");
+		return usuarioRepository.save(professor);
+	}
 
 	@Override
 	public List<Usuario> findAll() {
-		
+
 		return usuarioRepository.findAll();
 	}
 
 	@Override
 	public Optional<Usuario> findById(Long id) {
-		return usuarioRepository.findById(id);
+
+		Optional <Usuario> usuario =  usuarioRepository.findById(id);
+		return usuario;
 	}
 
 	@Override
@@ -60,7 +75,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 			user.setNome(usuario.getNome());
 			user.setDataNascimento(usuario.getDataNascimento());
 			return usuarioRepository.save(user);
-        }).orElseThrow(()-> new Exception("Usuário não encontrado!"));
+		}).orElseThrow(()-> new Exception("Usuário não encontrado!"));
 	}
 
 	@Override
@@ -69,8 +84,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	}
 
 	@Override
-	public void addPapelToUsuario(String email, String nomePapel) {
-        Usuario usuario = usuarioRepository.findByUsername(email);
+	public void addPapelToUsuario(Usuario usuario, String nomePapel) {
 		Papel papel = papelRepository.findByName(nomePapel);
 		usuario.getPapeis().add(papel);
 	}

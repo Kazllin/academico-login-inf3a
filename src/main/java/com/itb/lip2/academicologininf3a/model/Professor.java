@@ -25,8 +25,8 @@ public class Professor extends Usuario {
 
 
     }
-    public Professor(Long id, String nome, String email, String senha, Collection<Papel> papeis) {
-        super(id, nome, email, senha, papeis);  // Acesso ao construtor da classe pai
+    public Professor(Long id, String nome, String email, String senha, String tipoUsuario, Collection<Papel> papeis) {
+        super(id, nome, email, senha,tipoUsuario, papeis);  // Acesso ao construtor da classe pai
     }
 
     public int getPontuacao() {

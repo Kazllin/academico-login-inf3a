@@ -3,12 +3,15 @@ package com.itb.lip2.academicologininf3a.service;
 import com.itb.lip2.academicologininf3a.model.Professor;
 import com.itb.lip2.academicologininf3a.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService{
+
+
 
     private final ProfessorRepository professorRepository;
     ProfessorServiceImpl(ProfessorRepository professorRepository) {
@@ -28,4 +31,6 @@ public class ProfessorServiceImpl implements ProfessorService{
             return professorRepository.save(prof);
         }).orElseThrow(()->new Exception("Professor não encontrado!"));
     }
+
+
 }

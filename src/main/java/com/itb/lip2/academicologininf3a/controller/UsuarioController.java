@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itb.lip2.academicologininf3a.model.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,14 @@ public class UsuarioController {
 
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/academico/api/v1/users").toUriString());
 		return ResponseEntity.created(uri).body(usuarioService.save(usuario));
+
+	}
+
+	@PostMapping("/users/professor")
+	public ResponseEntity<Usuario> saveProfessor(@RequestBody Professor professor) {
+
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/academico/api/v1/users").toUriString());
+		return ResponseEntity.created(uri).body(usuarioService.saveProfessor(professor));
 
 	}
 
