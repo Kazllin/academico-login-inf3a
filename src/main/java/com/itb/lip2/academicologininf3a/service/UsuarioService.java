@@ -3,14 +3,14 @@ package com.itb.lip2.academicologininf3a.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.itb.lip2.academicologininf3a.model.Papel;
-import com.itb.lip2.academicologininf3a.model.Professor;
-import com.itb.lip2.academicologininf3a.model.Usuario;
+import com.itb.lip2.academicologininf3a.model.*;
 
 public interface UsuarioService {
 
 	Usuario save(Usuario usuario);
 	Usuario saveProfessor(Professor professor);
+	Usuario saveAluno(Aluno aluno);
+	Usuario saveFuncionario(Funcionario funcionario);
 	List<Usuario> findAll();
 	Optional<Usuario> findById(Long id);
 	Usuario update(Long id, Usuario usuario) throws Exception;

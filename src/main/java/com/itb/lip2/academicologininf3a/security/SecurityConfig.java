@@ -48,12 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS).
+               /// nao precisa de autenticao
                 and().authorizeRequests().antMatchers("/academico/api/v1/login/**","/academico/api/v1/users/**", "/academico/api/v1/logout/**").permitAll();
         http.authorizeRequests().
+                /// precisa de autenticao
                 antMatchers("/academico/api/v1/professor/**").hasAnyAuthority("ROLE_INSTRUCTOR").
                 antMatchers("/academico/api/v1/aluno/**").hasAnyAuthority("ROLE_STUDENT").
                 antMatchers("/academico/api/v1/funcionario/**").hasAnyAuthority("ROLE_FUNCIONARIO").
-                antMatchers("/academico/api/v1/admin/**").hasAnyAuthority("ROLE_ADMIN").
+                antMatchers("/academico/api/v1/adm/**").hasAnyAuthority("ROLE_ADMIN").
+
 
                 anyRequest().authenticated();
           http.addFilter(customAuthenticationFilter);

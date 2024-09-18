@@ -1,4 +1,4 @@
-package com.itb.inf2cm.pizzaria.exceptions;
+package com.itb.lip2.academicologininf3a.exceptions;
 
 
 import org.springframework.http.HttpHeaders;
@@ -22,6 +22,9 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> globalException(Exception ex, WebRequest request) {
+
+        LocalDateTime localDateTimeBrasil = LocalDateTime.now(zoneBrasil);
+
         String errorMessageDescription = ex.getLocalizedMessage(); // Mensagem detalhada do erro
         System.out.println(errorMessageDescription);               // Mostrando a mensagem detalhada do erro
         errorMessageDescription = "Ocorreu um erro interno no servidor"; // Substituindo a mensagem original por uma genérica
@@ -34,8 +37,12 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = {BadRequest.class})
-    public ResponseEntity<Object> badRequestException(Exception ex, WebRequest request) {
+    @ExceptionHandler(value = {NotFound.class})
+    public ResponseEntity<Object> badRequestException(BadRequest ex, WebRequest request) {
+
+        LocalDateTime localDateTimeBrasil = LocalDateTime.now(zoneBrasil);
+
+
         String errorMessageDescription = ex.getLocalizedMessage(); // Mensagem detalhada do erro
         System.out.println(errorMessageDescription);               // Mostrando a mensagem detalhada do erro
 
@@ -43,9 +50,10 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
         arrayMessage = errorMessageDescription.split(":");
 
-        ErrorMessage errorMessage = new ErrorMessage(localDateTimeBrasil, arrayMessage, HttpStatus.BAD_REQUEST);
+        ErrorMessage errorMessage = new ErrorMessage(localDateTimeBrasil, arrayMessage, HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
 

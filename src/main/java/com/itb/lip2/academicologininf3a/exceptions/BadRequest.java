@@ -1,4 +1,4 @@
-package com.itb.inf2cm.pizzaria.exceptions;
+package com.itb.lip2.academicologininf3a.exceptions;
 
 public class BadRequest extends RuntimeException {
 
