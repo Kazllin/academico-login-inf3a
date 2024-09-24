@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().
                 /// precisa de autenticao
                 antMatchers("/academico/api/v1/professor/**").hasAnyAuthority("ROLE_INSTRUCTOR").
-                antMatchers("/academico/api/v1/aluno/**").hasAnyAuthority("ROLE_STUDENT").
+                antMatchers("/academico/api/v1/cliente/**").hasAnyAuthority("ROLE_CUSTOMER").
                 antMatchers("/academico/api/v1/funcionario/**").hasAnyAuthority("ROLE_FUNCIONARIO").
                 antMatchers("/academico/api/v1/adm/**").hasAnyAuthority("ROLE_ADMIN").
 

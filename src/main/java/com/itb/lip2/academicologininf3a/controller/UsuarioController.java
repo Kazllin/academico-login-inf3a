@@ -4,7 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.itb.lip2.academicologininf3a.model.Aluno;
+import com.itb.lip2.academicologininf3a.exceptions.NotFound;
+import com.itb.lip2.academicologininf3a.model.Cliente;
 import com.itb.lip2.academicologininf3a.model.Funcionario;
 import com.itb.lip2.academicologininf3a.model.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,11 @@ public class UsuarioController {
 
 	}
 
-	@PostMapping("/users/aluno")
-	public ResponseEntity<Usuario> saveAluno(@RequestBody Aluno aluno) {
+	@PostMapping("/users/cliente")
+	public ResponseEntity<Usuario> saveAluno(@RequestBody Cliente cliente) {
 
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/academico/api/v1/users").toUriString());
-		return ResponseEntity.created(uri).body(usuarioService.saveAluno(aluno));
+		return ResponseEntity.created(uri).body(usuarioService.saveCliente(cliente));
 
 	}
 
@@ -66,7 +67,7 @@ public class UsuarioController {
 		try{
 			return ResponseEntity.ok().body(usuarioService.findById(id).get());
 		}catch (Exception e){
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado!");
+			throw new NotFound("Usuario nao encontrado " + id);
 		}
 	}
 	@PutMapping("/users/{id}")

@@ -9,7 +9,7 @@ public interface UsuarioService {
 
 	Usuario save(Usuario usuario);
 	Usuario saveProfessor(Professor professor);
-	Usuario saveAluno(Aluno aluno);
+	Usuario saveCliente(Cliente cliente);
 	Usuario saveFuncionario(Funcionario funcionario);
 	List<Usuario> findAll();
 	Optional<Usuario> findById(Long id);

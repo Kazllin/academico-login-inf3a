@@ -54,12 +54,12 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	}
 
 	@Override
-	public Usuario saveAluno(Aluno aluno) {
-		aluno.setCodStatusUsuario(true);
-		aluno.setSenha(passwordEncoder.encode(aluno.getSenha()));
-		aluno.setPapeis(new ArrayList<>());
-		addPapelToUsuario(aluno, "ROLE_ALUNO");
-		return usuarioRepository.save(aluno);
+	public Usuario saveCliente(Cliente cliente) {
+		cliente.setCodStatusUsuario(true);
+		cliente.setSenha(passwordEncoder.encode(cliente.getSenha()));
+		cliente.setPapeis(new ArrayList<>());
+		addPapelToUsuario(cliente, "ROLE_CLIENTE");
+		return usuarioRepository.save(cliente);
 	}
 
 	@Override

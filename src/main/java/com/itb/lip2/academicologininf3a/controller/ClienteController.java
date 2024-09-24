@@ -1,26 +1,26 @@
 package com.itb.lip2.academicologininf3a.controller;
 
-import com.itb.lip2.academicologininf3a.model.Aluno;
-import com.itb.lip2.academicologininf3a.service.AlunoService;
+import com.itb.lip2.academicologininf3a.model.Cliente;
+import com.itb.lip2.academicologininf3a.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/academico/api/v1/alunos")
-public class AlunoController {
+@RequestMapping("/academico/api/v1/cliente")
+public class ClienteController {
 
-    private final AlunoService alunoService;
+    private final ClienteService clienteService;
 
-    AlunoController (AlunoService alunoService) {
-        this.alunoService = alunoService;
+    ClienteController (ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object>updateAluno(@RequestBody Aluno aluno, @PathVariable(value="id") Long id) {
+    public ResponseEntity<Object>updateCliente(@RequestBody Cliente cliente, @PathVariable(value="id") Long id) {
         try {
-            return ResponseEntity.ok().body(alunoService.update(id, aluno));
+            return ResponseEntity.ok().body(clienteService.update(id, cliente));
         }catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

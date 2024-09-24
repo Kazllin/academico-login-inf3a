@@ -1,8 +1,8 @@
 package com.itb.lip2.academicologininf3a.service;
 
-import com.itb.lip2.academicologininf3a.model.Aluno;
+import com.itb.lip2.academicologininf3a.model.Cliente;
 
-public interface AlunoService {
+public interface ClienteService {
 
-    Aluno update(Long id, Aluno aluno) throws Exception;
+    Cliente update(Long id, Cliente cliente) throws Exception;
 }

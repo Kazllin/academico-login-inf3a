@@ -19,7 +19,7 @@ import javax.persistence.*;
 @EnableJpaAuditing
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipoUsuario")
 @JsonSubTypes({
-	@JsonSubTypes.Type(value = Aluno.class, name = "Aluno"),
+	@JsonSubTypes.Type(value = Cliente.class, name = "Cliente"),
 	@JsonSubTypes.Type(value = Professor.class, name = "Professor"),
 	@JsonSubTypes.Type(value = Funcionario.class, name = "Funcionario")
 })

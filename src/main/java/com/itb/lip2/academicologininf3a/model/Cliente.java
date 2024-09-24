@@ -6,19 +6,19 @@ import javax.persistence.Entity;
 import java.util.Collection;
 
 @Entity
-@DiscriminatorValue(value = "Aluno")
+@DiscriminatorValue(value = "Cliente")
 
-public class Aluno extends Usuario {
+public class Cliente extends Usuario {
 
     private String rm;
 
 
-    public Aluno() {
+    public Cliente() {
 
 
     }
 
-    public Aluno(Long id, String nome, String email, String senha, String tipoUsuario, Collection<Papel> papeis) {
+    public Cliente(Long id, String nome, String email, String senha, String tipoUsuario, Collection<Papel> papeis) {
 
         super(id, nome,email, senha,tipoUsuario, papeis);  // Acesso ao construtor da class pai
 
