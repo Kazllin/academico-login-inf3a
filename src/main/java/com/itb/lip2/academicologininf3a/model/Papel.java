@@ -58,8 +58,4 @@ public class Papel {
 	public void setCodStatusPapel(boolean codStatusPapel) {
 		this.codStatusPapel = codStatusPapel;
 	}
-	
-	
-	
-
 }

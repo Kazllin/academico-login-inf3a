@@ -47,7 +47,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/users/cliente")
-	public ResponseEntity<Usuario> saveAluno(@RequestBody Cliente cliente) {
+	public ResponseEntity<Usuario> saveCliente(@RequestBody Cliente cliente) {
 
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/academico/api/v1/users").toUriString());
 		return ResponseEntity.created(uri).body(usuarioService.saveCliente(cliente));

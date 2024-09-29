@@ -18,7 +18,4 @@ public interface UsuarioService {
 	void addPapelToUsuario(Usuario usuario, String nomePapel);
 
 	Usuario findByUsername(String username);
-
-
-
 }

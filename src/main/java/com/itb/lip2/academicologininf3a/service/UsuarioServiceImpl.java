@@ -101,8 +101,15 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	@Override
 	public void addPapelToUsuario(Usuario usuario, String nomePapel) {
-		Papel papel = papelRepository.findByName(nomePapel);
-		usuario.getPapeis().add(papel);
+		 Papel papel = papelRepository.findByName(nomePapel);
+		    if (papel == null) {
+		        papel = new Papel();
+		        papel.setNomePapel(nomePapel);
+		        papel.setCodStatusPapel(true);
+		        papelRepository.save(papel);
+		    }
+		    usuario.getPapeis().add(papel);
+		   
 	}
 
 	@Override
