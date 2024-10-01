@@ -33,7 +33,7 @@ public class CarrinhoComprasController {
         return ResponseEntity.ok().body(carrinhoComprasService.findById(id));
     }
 
-    @PutMapping("/carrinho-compras/{id}")
+    @PutMapping("/carrinho-compras/{id}/anao")
     public ResponseEntity<CarrinhoCompras> update(@PathVariable Long id, @RequestBody CarrinhoCompras carrinhoCompras) throws Exception {
         return ResponseEntity.ok().body(carrinhoComprasService.update(id, carrinhoCompras));
     }
