@@ -25,7 +25,7 @@ public class AcademicoLoginInf3anApplication {
 			//usuarioService.save(new Professor(null,"Rogerio","Caetano Santos", "nilcc@gmail.com", "1234", new ArrayList<>()));
 			if(papelRepository.findAll().size() == 0) {
 				usuarioService.savePapel(new Papel(null, "ROLE_PROFESSOR"));
-				usuarioService.savePapel(new Papel(null, "ROLE_ALUNO"));
+				usuarioService.savePapel(new Papel(null, "ROLE_CLIENTE"));
 				usuarioService.savePapel(new Papel(null, "ROLE_FUNCIONARIO"));
 				usuarioService.savePapel(new Papel(null, "ROLE_ADMIN"));
 			}else {
