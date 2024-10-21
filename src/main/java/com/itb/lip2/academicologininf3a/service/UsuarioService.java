@@ -16,6 +16,8 @@ public interface UsuarioService {
 	Usuario update(Long id, Usuario usuario) throws Exception;
 	Papel savePapel(Papel papel);
 	void addPapelToUsuario(Usuario usuario, String nomePapel);
-
+	List<Usuario> findAllClientes();
 	Usuario findByUsername(String username);
+	
+	 Compra finalizarCompra(Long clienteId) throws Exception;
 }

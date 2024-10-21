@@ -1,9 +1,11 @@
 package com.itb.lip2.academicologininf3a.repository;
 
-import com.itb.lip2.academicologininf3a.model.FinalizarCompras;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.itb.lip2.academicologininf3a.model.Carrinho;
+
 @Repository
-public interface FinalizarComprasRepository extends JpaRepository<FinalizarCompras, Long> {
+public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {
+
 }

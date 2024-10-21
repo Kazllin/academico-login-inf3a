@@ -13,9 +13,10 @@ public class Produto {
     private String nome;
     private String descricao;
     private double preco;
-
     private Integer quantidade;
+    private String imagem; // Campo para armazenar a imagem
 
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -54,5 +55,13 @@ public class Produto {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getImagem() {
+        return imagem; // Getter para a imagem
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem; // Setter para a imagem
     }
 }

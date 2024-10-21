@@ -1,5 +1,6 @@
 package com.itb.lip2.academicologininf3a.service;
 
+import com.itb.lip2.academicologininf3a.exceptions.NotFound;
 import com.itb.lip2.academicologininf3a.model.Produto;
 import com.itb.lip2.academicologininf3a.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,18 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     @Transactional
-    public Produto update(Long id, Produto produto) throws Exception {
-        return produtoRepository.findById(id).map(p -> {
-            p.setNome(produto.getNome());
-            p.setDescricao(produto.getDescricao());
-            p.setPreco(produto.getPreco());
-            p.setQuantidade(produto.getQuantidade());
-            return produtoRepository.save(p);
-        }).orElseThrow(() -> new Exception("Produto não encontrado!"));
+ // ProdutoService.java
+    public Produto update(Long id, Produto produtoAtualizado) {
+        Produto produtoExistente = produtoRepository.findById(id)
+            .orElseThrow(() -> new NotFound("Produto não encontrado"));
+
+        // Atualiza os campos do produto existente
+        produtoExistente.setNome(produtoAtualizado.getNome());
+        produtoExistente.setPreco(produtoAtualizado.getPreco());
+        produtoExistente.setQuantidade(produtoAtualizado.getQuantidade());
+        // Adicione outros campos conforme necessário
+
+        return produtoRepository.save(produtoExistente); // Salva as alterações
     }
 
 }

@@ -1,6 +1,8 @@
 package com.itb.lip2.academicologininf3a.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -49,7 +51,8 @@ public abstract class Usuario {
 			)
 	private Collection<Papel> papeis;
 
-
+	
+	 
 	public Usuario() {
 
 	}
