@@ -50,19 +50,28 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        User user = (User) authResult.getPrincipal();
+        User user = (User ) authResult.getPrincipal();
         Usuario usuario = usuarioService.findByUsername(user.getUsername());
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        String access_token = JWT.create().withSubject(usuario.getId().toString())
+        
+        // Cria o token JWT
+        String access_token = JWT.create()
+                .withSubject(usuario.getId().toString())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
-        Map<String, String> tokens = new HashMap<>();
+        
+        // Cria o objeto de resposta
+        Map<String, Object> tokens = new HashMap<>();
         tokens.put("access_token", access_token);
+        
+        // Adiciona os papéis do usuário à resposta
+        tokens.put("papeis", user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
+        
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
-
-
     }
 }
